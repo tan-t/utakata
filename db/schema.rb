@@ -12,7 +12,7 @@
 
 ActiveRecord::Schema.define(version: 20180612005153) do
 
-  create_table "follows", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "follows", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4" do |t|
     t.string "followable_type", null: false
     t.bigint "followable_id", null: false
     t.string "follower_type", null: false
@@ -29,7 +29,7 @@ ActiveRecord::Schema.define(version: 20180612005153) do
     t.index ["user_id"], name: "index_follows_on_user_id"
   end
 
-  create_table "posts", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "posts", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4" do |t|
     t.string "tanka"
     t.bigint "user_id"
     t.datetime "created_at", null: false
@@ -38,7 +38,7 @@ ActiveRecord::Schema.define(version: 20180612005153) do
     t.index ["user_id"], name: "index_posts_on_user_id"
   end
 
-  create_table "users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4" do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
     t.string "reset_password_token"
