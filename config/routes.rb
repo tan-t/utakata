@@ -1,4 +1,14 @@
 Rails.application.routes.draw do
+  get 'moment/new'
+
+  get 'moment/create'
+
+  get 'moment/edit'
+
+  get 'moment/update'
+
+  get 'moment/destroy'
+
   devise_for :users, :controllers => {
     :registrations => 'users/registrations'
   }

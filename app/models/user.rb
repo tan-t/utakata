@@ -4,8 +4,8 @@ class User < ApplicationRecord
   
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
-  devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :trackable, :validatable, :confirmable
+  devise :database_authenticatable, :registerable, :rememberable
+         #:recoverable, :rememberable, :trackable, :validatable, :confirmable
   
   if Rails.env == 'production'
     has_attached_file :avatar, styles: { original: "75x75#", medium: "35x35#", small: "20x20#" }, default_url: "https://utakata.s3.amazonaws.com/:style/utakata.png"
@@ -20,6 +20,7 @@ class User < ApplicationRecord
   validates :twitter_id, length: { maximum: 16 }
 
   has_many :posts, inverse_of: :user, dependent: :destroy
+  has_many :moments, inverse_of: :user, dependent: :destroy
 
   def update_without_current_password(params, *options)
     params.delete(:current_password)

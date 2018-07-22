@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180612005153) do
+ActiveRecord::Schema.define(version: 20180722040326) do
 
   create_table "follows", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4" do |t|
     t.string "followable_type", null: false
@@ -27,6 +27,23 @@ ActiveRecord::Schema.define(version: 20180612005153) do
     t.index ["follower_id", "follower_type"], name: "fk_follows"
     t.index ["follower_type", "follower_id"], name: "index_follows_on_follower_type_and_follower_id"
     t.index ["user_id"], name: "index_follows_on_user_id"
+  end
+
+  create_table "moment_maps", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4" do |t|
+    t.bigint "post_id"
+    t.bigint "moment_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["moment_id"], name: "index_moment_maps_on_moment_id"
+    t.index ["post_id"], name: "index_moment_maps_on_post_id"
+  end
+
+  create_table "moments", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4" do |t|
+    t.bigint "user_id"
+    t.string "title"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_moments_on_user_id"
   end
 
   create_table "posts", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4" do |t|
@@ -68,5 +85,8 @@ ActiveRecord::Schema.define(version: 20180612005153) do
   end
 
   add_foreign_key "follows", "users"
+  add_foreign_key "moment_maps", "moments"
+  add_foreign_key "moment_maps", "posts"
+  add_foreign_key "moments", "users"
   add_foreign_key "posts", "users"
 end

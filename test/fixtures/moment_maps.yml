@@ -1,9 +1,9 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  tanka: MyString
-  user: one
+  post: one
+  moment: one
 
 two:
-  tanka: MyString2
-  user: two
+  post: two
+  moment: two
