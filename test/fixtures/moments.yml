@@ -7,3 +7,7 @@ one:
 two:
   user: two
   title: MyString
+
+three:
+  user: one
+  title: MyTitle
